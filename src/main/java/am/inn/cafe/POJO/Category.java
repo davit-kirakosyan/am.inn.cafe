@@ -13,7 +13,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 
-@org.hibernate.annotations.NamedQuery(name = "Category.getAllCategory", query = "select c from Category c")
+@NamedQuery(name = "Category.getAllCategory", query = "select c from Category c where c.id in (select p.category from Product p where p.status='true')")
 
 @Data
 @Builder

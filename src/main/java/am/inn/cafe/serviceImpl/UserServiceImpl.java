@@ -77,12 +77,12 @@ public class UserServiceImpl implements UserService {
 
             if(authentication.isAuthenticated()) {
                 if(customerUserDetailsService.getUserDetail().getStatus().equalsIgnoreCase("true")) {
-                    return new ResponseEntity<String>("{\"token\": \"" +
+                    return new ResponseEntity<>("{\"token\": \"" +
                             jwtUtil.generateToken(customerUserDetailsService.getUserDetail().getEmail(),
                                     customerUserDetailsService.getUserDetail().getRole()) + "\"}",
                             HttpStatus.OK);
                 } else {
-                    return new ResponseEntity<String>("{\"message\": \"Wait for admin approval.\"}",
+                    return new ResponseEntity<>("{\"message\": \"Wait for admin approval.\"}",
                             HttpStatus.BAD_REQUEST);
                 }
             }
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
             log.error("{}", e);
         }
 
-        return new ResponseEntity<String>("{\"message\": \"Bad Credentials.\"}",
+        return new ResponseEntity<>("{\"message\": \"Bad Credentials.\"}",
                 HttpStatus.BAD_REQUEST);
     }
 
